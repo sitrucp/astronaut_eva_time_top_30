@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
-import pandas as pd
 from matplotlib.patches import Patch
+from matplotlib.font_manager import FontProperties
+import pandas as pd
 import numpy as np
 from PIL import Image
 
@@ -39,11 +40,10 @@ df_sorted_asc["color"] = df_sorted_asc["Agency"].map(color_mapping)
 
 # Plotting
 plt.figure(figsize=(10, 10), facecolor="black")
-plt.subplots_adjust(top=0.8)  # Adjusting space for the updated chart title
 
 # Create EVA Time primary axis bars 
 ax1 = plt.gca()
-eva_time_bars = ax1.barh(df_sorted_asc["Astronaut"], df_sorted_asc["EVA Time (min)"], color=df_sorted_asc['color'], alpha=0.7)
+eva_time_bars = ax1.barh(df_sorted_asc["Astronaut"], df_sorted_asc["EVA Time (min)"], color=df_sorted_asc['color'], alpha=0.8)
 
 # Create EVA Time primary axis bar data labels
 for bar in eva_time_bars:
@@ -55,7 +55,7 @@ for bar in eva_time_bars:
 
 # Create EVA Count secondary axis bars
 ax2 = ax1.twiny()
-eva_count_bars = ax2.barh(df_sorted_asc["Astronaut"], df_sorted_asc["EVA Count"], height=0.3, color="white", alpha=0.7)
+eva_count_bars = ax2.barh(df_sorted_asc["Astronaut"], df_sorted_asc["EVA Count"], height=0.3, color="white", alpha=0.8)
 
 # Create EVA Count secondary axis bar data labels
 for bar in eva_count_bars:
@@ -67,9 +67,11 @@ for bar in eva_count_bars:
              ha='center', va='center', color="white", fontsize=8, bbox=bbox_props, fontweight='bold')
 
 # Create agency legend
-legend_elements = [Patch(facecolor='blue', edgecolor='blue', label='NASA', alpha=0.7),
-                   Patch(facecolor='red', edgecolor='red', label='RSA', alpha=0.7)]
-ax1.legend(handles=legend_elements, title="", loc='center right', bbox_to_anchor=(1, 0.5))
+# Define font properties for the legend
+font_props = FontProperties(weight='bold')
+legend_elements = [Patch(facecolor='blue', edgecolor='blue', label='NASA', alpha=0.8),
+                   Patch(facecolor='red', edgecolor='red', label='RSA', alpha=0.8)]
+ax1.legend(handles=legend_elements, title="", loc='center right', bbox_to_anchor=(1, 0.5), prop=font_props)
 
 # Modify primary and secondary x-axis
 for ax in [ax1, ax2]:
@@ -103,9 +105,9 @@ ax1.imshow(image, aspect='auto', extent=[x_min, x_max, y_min, y_max], zorder=-1)
 # Main title
 plt.text(0.5, 1.03, "Top 30 Spacewalk Records by Cumulative Extra-Vehicular Activity (EVA) Time\n", horizontalalignment='center', fontsize=12, transform=ax1.transAxes, color='white', fontweight='bold')
 # Subtitle
-plt.text(0.5, 1.01, "EVA Time (HH:MM) (colored bars), EVA Count (white bars)\n", horizontalalignment='center', fontsize=10, transform=ax1.transAxes, color='white')
+plt.text(0.5, 1.01, "EVA Time (HH:MM) (colored bars), EVA Count (white bars)\n", horizontalalignment='center', fontsize=10, transform=ax1.transAxes, color='white', fontweight='bold')
 # Source
-plt.text(0.5, 0.99, "Data from https://en.wikipedia.org/wiki/List_of_cumulative_spacewalk_records\ncreated by @curtispokrant", horizontalalignment='center', fontsize=8, transform=ax1.transAxes, color='white')
+plt.text(0.5, 0.98, "Data from https://en.wikipedia.org/wiki/List_of_cumulative_spacewalk_records\ncreated by @curtispokrant", horizontalalignment='center', fontsize=8, transform=ax1.transAxes, color='white', fontweight='bold')
 
 # Adjust the layout
 plt.subplots_adjust(top=0.85)
