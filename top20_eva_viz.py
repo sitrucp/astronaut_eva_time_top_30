@@ -89,7 +89,7 @@ ax1.tick_params(left=True, labelleft=True)  # Show y-axis ticks and labels
 ax1.tick_params(axis='y', labelcolor='white')
 
 # Load an image
-image = Image.open('jwst_background.jpg')
+image = Image.open('star_background.jpg')
 image = np.array(image)
 # Get the current limits of the plot
 x_min, x_max = ax1.get_xlim()
@@ -98,7 +98,7 @@ y_min, y_max = ax1.get_ylim()
 ax1.imshow(image, aspect='auto', extent=[x_min, x_max, y_min, y_max], zorder=-1)
 
 # Main title
-plt.text(0.5, 1.03, "Top 30 Spacewalk Records by Cumulative EVA Time\n", horizontalalignment='center', fontsize=14, transform=ax1.transAxes, color='white')
+plt.text(0.5, 1.03, "Top 30 Spacewalk Records by Cumulative Extra-Vehicular Activity (EVA) Time\n", horizontalalignment='center', fontsize=14, transform=ax1.transAxes, color='white')
 # Subtitle
 plt.text(0.5, 1.01, "EVA Time (HH:MM) (colored bars), EVA Count (white bars)\n", horizontalalignment='center', fontsize=10, transform=ax1.transAxes, color='white')
 # Source
