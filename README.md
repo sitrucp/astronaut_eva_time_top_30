@@ -1,6 +1,6 @@
-# Top 30 Spacewalk Records by Cumulative EVA Time
+# Top 30 Spacewalk Records by Cumulative Extra-Vehicular Activity (EVA) Time
 
-Visualiztion showing the top 30 astronauts by cumulative extra-vehicular activity (EVA) time. Includes EVA count and space agency (NASA or RSA). List was current as of August 9, 2023. The RSA designation includes spacewalks under the earlier Soviet space program. 
+Visualiztion showing the top 30 astronauts by EVA time. Includes EVA count and space agency (NASA or RSA). List was current as of August 9, 2023. The RSA designation includes spacewalks under the earlier Soviet space program. 
 
 ![Top 30 Spacewalk Records by Cumulative EVA Time](top30_spacewalk_evas.png)
 

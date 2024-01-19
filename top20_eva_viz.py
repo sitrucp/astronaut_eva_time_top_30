@@ -51,7 +51,7 @@ for bar in eva_time_bars:
     # Find the corresponding HH:MM value for the bar
     hh_mm_value = df_sorted_asc[df_sorted_asc["EVA Time (min)"] == bar_width]["EVA Time"].values[0]
     ax1.text(bar_width + 10, bar.get_y() + bar.get_height()/2, hh_mm_value, 
-             va='center', ha='left', color="white", fontsize=8)
+             va='center', ha='left', color="white", fontsize=8, fontweight='bold')
 
 # Create EVA Count secondary axis bars
 ax2 = ax1.twiny()
@@ -64,7 +64,7 @@ for bar in eva_count_bars:
     # Decrease the height of the background box by adjusting the padding
     bbox_props = dict(facecolor='black', edgecolor='none', boxstyle='square,pad=0.05', alpha=0.7)
     ax2.text(label_x_pos, bar.get_y() + bar.get_height()/2, label_str,
-             ha='center', va='center', color="white", fontsize=8, bbox=bbox_props)
+             ha='center', va='center', color="white", fontsize=8, bbox=bbox_props, fontweight='bold')
 
 # Create agency legend
 legend_elements = [Patch(facecolor='blue', edgecolor='blue', label='NASA', alpha=0.7),
@@ -84,9 +84,12 @@ for ax in [ax1, ax2]:
     ax.grid(False)
     ax.set_facecolor('black')
 
-# Keep the y axis left labels
-ax1.tick_params(left=True, labelleft=True)  # Show y-axis ticks and labels
-ax1.tick_params(axis='y', labelcolor='white')
+# Show / keep y axis left labels
+ax1.tick_params(left=True, labelleft=True, labelcolor='white', labelsize=8)
+
+# Set y-axis labels to bold
+for label in ax1.get_yticklabels():
+    label.set_fontweight('bold')
 
 # Load an image
 image = Image.open('star_background.jpg')
@@ -98,7 +101,7 @@ y_min, y_max = ax1.get_ylim()
 ax1.imshow(image, aspect='auto', extent=[x_min, x_max, y_min, y_max], zorder=-1)
 
 # Main title
-plt.text(0.5, 1.03, "Top 30 Spacewalk Records by Cumulative Extra-Vehicular Activity (EVA) Time\n", horizontalalignment='center', fontsize=14, transform=ax1.transAxes, color='white')
+plt.text(0.5, 1.03, "Top 30 Spacewalk Records by Cumulative Extra-Vehicular Activity (EVA) Time\n", horizontalalignment='center', fontsize=12, transform=ax1.transAxes, color='white', fontweight='bold')
 # Subtitle
 plt.text(0.5, 1.01, "EVA Time (HH:MM) (colored bars), EVA Count (white bars)\n", horizontalalignment='center', fontsize=10, transform=ax1.transAxes, color='white')
 # Source
